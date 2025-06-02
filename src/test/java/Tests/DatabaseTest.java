@@ -1,0 +1,7 @@
+package Tests;
+
+
+class DatabaseTest {
+
+
+}

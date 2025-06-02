@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  */
 
-package com.aut603.pdc_assignment_2;
+package com.aut603.Main;
 
 /**
  *
