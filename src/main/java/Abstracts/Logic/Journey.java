@@ -1,4 +1,4 @@
 package Abstracts.Logic;
 
-abstract class Journey {
+public abstract class Journey {
 }

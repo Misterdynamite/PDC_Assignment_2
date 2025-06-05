@@ -10,17 +10,5 @@ public abstract class DatabaseReader {
     public DatabaseReader() {
     }
 
-    public String clobToString(Clob clob) {
-        if (clob == null) {
-            return null;
-        }
-        try {
-            StringBuilder sb = new StringBuilder();
-            String str = clob.getSubString(1, (int) clob.length());
-            sb.append(str);
-            return sb.toString();
-        } catch (Exception e) {
-            throw new RuntimeException("Failed to convert CLOB to String", e);
-        }
-    }
+
 }

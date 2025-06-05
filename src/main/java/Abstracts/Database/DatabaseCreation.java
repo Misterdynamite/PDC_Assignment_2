@@ -8,7 +8,10 @@ public abstract class DatabaseCreation {
     protected Database database;
     protected Statement statement;
 
-
+    public DatabaseCreation(Database database) {
+        this.database = database;
+        this.statement = this.database.statement;
+    }
     public boolean checkIfTableExists(String tableName) {
         try {
             DatabaseMetaData meta = this.database.connection.getMetaData();
