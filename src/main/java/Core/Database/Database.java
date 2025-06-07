@@ -18,8 +18,7 @@ public class Database extends Abstracts.Database.Database {
         this.connect();
         this.reader = new DatabaseReader(this);
         this.writer = new DatabaseWriter(this);
-
-
+        this.initialiseDatabase();
     }
 
     @Override
@@ -27,7 +26,7 @@ public class Database extends Abstracts.Database.Database {
         try {
             this.connection = java.sql.DriverManager.getConnection(url, user, password);
             this.statement = this.connection.createStatement();
-            this.initialiseDatabase();
+            
 
         } catch (Exception e) {
             throw new RuntimeException("Failed to connect to embedded database", e);
