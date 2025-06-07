@@ -21,4 +21,6 @@ public abstract class Database {
     public abstract void disconnect();
     public Statement getStatement(){return this.statement;}
     public Connection getConnection() {return this.connection;}
+
+
 }

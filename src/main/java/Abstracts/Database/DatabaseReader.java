@@ -1,5 +1,7 @@
 package Abstracts.Database;
 
+import Core.Player.Journey;
+
 import java.sql.Clob;
 import java.sql.Statement;
 
@@ -9,6 +11,5 @@ public abstract class DatabaseReader {
 
     public DatabaseReader() {
     }
-
 
 }

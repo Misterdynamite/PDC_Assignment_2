@@ -6,18 +6,18 @@ public class DatabaseCreation extends Abstracts.Database.DatabaseCreation {
         super(database);
     }
 
+    public void initaliseDatabase() {
+        this.createJourneyTable();
+        this.createCharacterTable();
+    }
+
     public boolean createJourneyTable() {
-        if (this.checkIfTableExists("journey")) {
+        if (this.checkIfTableExists("journeys")) {
             return true;
         }
-        String sql = "CREATE TABLE journey (" +
-                "journey_id INT PRIMARY KEY GENERATED ALWAYS AS IDENTITY, " +
-                "character_id INT NOT NULL, " +
-                "character_data CLOB NOT NULL, " +
-                "journey_log CLOB NOT NULL, " +
-                "created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP, " +
-                "updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP, " +
-                "FOREIGN KEY (character_id) REFERENCES character(character_id)" +
+        String sql = "CREATE TABLE journeys (" +
+                "journey_id INT PRIMARY KEY," +
+                "journey_log CLOB NOT NULL" +
                 ")";
         try {
             this.statement.execute(sql);
@@ -29,12 +29,16 @@ public class DatabaseCreation extends Abstracts.Database.DatabaseCreation {
     }
 
     public boolean createCharacterTable() {
-        if (this.checkIfTableExists("character")) {
+        if (this.checkIfTableExists("characters")) {
             return true;
         }
-        String sql = "CREATE TABLE character (" +
-                "character_id INT PRIMARY KEY GENERATED ALWAYS AS IDENTITY, " +
-                "character_name VARCHAR(32) NOT NULL UNIQUE" +
+        String sql = "CREATE TABLE characters (" +
+                "journey_id INT PRIMARY KEY, " +
+                "character_name VARCHAR(32) NOT NULL, " +
+                "hp INT NOT NULL, " +
+                "money INT NOT NULL, " +
+                "inventory CLOB NOT NULL, " +
+                "FOREIGN KEY (journey_id) REFERENCES journeys(journey_id)" +
                 ")";
         try {
             this.statement.execute(sql);
