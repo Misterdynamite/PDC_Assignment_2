@@ -31,7 +31,7 @@ public abstract class Player {
         this.money = money;
     }
 
-    public void incrementMoney(int amount) {
+    public void changeMoney(int amount) {
         this.money += amount;
     }
 
@@ -43,7 +43,7 @@ public abstract class Player {
         this.health = health;
     }
 
-    public void incrementHealth(int amount) {
+    public void changeHealth(int amount) {
         this.health += amount;
     }
 }
