@@ -10,11 +10,11 @@ public abstract class DatabaseCreation {
 
     public DatabaseCreation(Database database) {
         this.database = database;
-        this.statement = this.database.statement;
+        this.statement = this.database.getStatement();
     }
     public boolean checkIfTableExists(String tableName) {
         try {
-            DatabaseMetaData meta = this.database.connection.getMetaData();
+            DatabaseMetaData meta = this.database.getConnection().getMetaData();
             try (ResultSet rs = meta.getTables(null, null, tableName.toUpperCase(), null)) {
                 return rs.next();
             }

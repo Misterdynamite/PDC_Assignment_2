@@ -4,6 +4,8 @@
  */
 package com.aut603.Main;
 
+import Abstracts.Logic.Event;
+
 /**
  *
  * @author DXG11

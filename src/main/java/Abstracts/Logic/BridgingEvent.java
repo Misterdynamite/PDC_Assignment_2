@@ -5,15 +5,16 @@
 package Abstracts.Logic;
 
 /**
- *
  * @author DXG11
  */
-import Core.Player.*
-public class abstract BridgingEvent {
 
-private String description;
-public boolean condition;
-private Player player;
-public abstract void OutCome();
-    
+import Core.Player.*;
+
+public abstract class BridgingEvent {
+
+    private String description;
+    public boolean condition;
+    private Player player;
+    public abstract void OutCome ();
+
 }
