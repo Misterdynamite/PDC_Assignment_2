@@ -2,6 +2,8 @@ package Core.Database;
 
 import Core.Player.Player;
 import Core.Player.Journey;
+import Core.Utilities.DatabaseUtilities;
+import Core.Utilities.GameUtilities;
 
 import java.sql.Clob;
 import java.sql.ResultSet;
@@ -47,6 +49,7 @@ public class DatabaseReader extends Abstracts.Database.DatabaseReader {
 
             int journeyId = journeyResult.getInt("journey_id");
             Clob journeyLogClob = journeyResult.getClob("journey_log");
+            String currentEvent = journeyResult.getString("saved_event");
             ArrayList<String> journeyLog = DatabaseUtilities.clobToJourneyLog(journeyLogClob);
 
             ResultSet characterResult = statement.executeQuery(
@@ -62,6 +65,7 @@ public class DatabaseReader extends Abstracts.Database.DatabaseReader {
             Journey journey = new Journey(player);
             journey.setJourneyId(journeyId);
             journey.setJourneyLog(journeyLog);
+            journey.setCurrentEvent(GameUtilities.loadEvent(currentEvent));
 
             return journey;
         } catch (SQLException e) {

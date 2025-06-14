@@ -2,6 +2,7 @@ package Core.Database;
 
 import Core.Player.Journey;
 import Core.Player.Player;
+import Core.Utilities.DatabaseUtilities;
 
 import java.sql.SQLException;
 
@@ -27,15 +28,17 @@ public class DatabaseWriter extends Abstracts.Database.DatabaseWriter {
                 journey.setJourneyId(journeyId);
             }
 
-            String updateJourneySql = "UPDATE journeys SET journey_log = ? WHERE journey_id = ?";
+            String updateJourneySql = "UPDATE journeys SET journey_log = ?, saved_event = ? WHERE journey_id = ?";
             try (java.sql.PreparedStatement journeyPs = database.getConnection().prepareStatement(updateJourneySql)) {
                 journeyPs.setClob(1, DatabaseUtilities.journeyLogToClob(journey.getJourneyLog()));
-                journeyPs.setInt(2, journeyId);
+                journeyPs.setString(2, journey.getCurrentEvent().getClass().getSimpleName());
+                journeyPs.setInt(3, journeyId);
                 if (journeyPs.executeUpdate() == 0) {
-                    String insertJourneySql = "INSERT INTO journeys (journey_id, journey_log) VALUES (?, ?)";
+                    String insertJourneySql = "INSERT INTO journeys (journey_id, journey_log, saved_event) VALUES (?, ?, ?)";
                     try (java.sql.PreparedStatement insertJourneyPs = database.getConnection().prepareStatement(insertJourneySql)) {
                         insertJourneyPs.setInt(1, journeyId);
                         insertJourneyPs.setClob(2, DatabaseUtilities.journeyLogToClob(journey.getJourneyLog()));
+                        insertJourneyPs.setString(3, journey.getCurrentEvent().getClass().getSimpleName());
                         insertJourneyPs.executeUpdate();
                     }
                 }

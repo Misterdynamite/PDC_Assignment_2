@@ -1,9 +1,11 @@
 package Core.Player;
 
+import Abstracts.Logic.Event;
+
 public class Journey extends Abstracts.Logic.Journey {
 
 
-    private String currentEvent;
+    private Event currentEvent;
 
     public Journey(Player player) {
         super();
@@ -15,11 +17,11 @@ public class Journey extends Abstracts.Logic.Journey {
         this.player = new Player(playerName);
     }
 
-    public String getCurrentEvent() {
+    public Event getCurrentEvent() {
         return currentEvent;
     }
 
-    public void setCurrentEvent(String currentEvent) {
+    public void setCurrentEvent(Event currentEvent) {
         this.currentEvent = currentEvent;
     }
 }

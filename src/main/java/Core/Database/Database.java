@@ -1,5 +1,6 @@
 package Core.Database;
 
+import Abstracts.Logic.Event;
 import Core.Player.Journey;
 
 import java.sql.SQLException;
