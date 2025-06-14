@@ -5,15 +5,11 @@
 package Abstracts.Logic;
 
 /**
+ *
  * @author DXG11
  */
-
-
-public abstract class Event {
-
-     protected String description;
-     protected Player player;
-     
-
-
+public class EncounterEvent extends Event{
+    private BridgingEvent optionOne, OptionTwo, OptionThree, OptionFour;
+    
+    
 }

@@ -4,6 +4,8 @@
  */
 package Core.GUI;
 
+import Abstracts.Logic.EncounterEvent;
+
 /**
  *
  * @author DXG11
@@ -17,6 +19,10 @@ public class EventGui extends javax.swing.JPanel {
     public EventGui(GuiMan man) {
         this.man = man;
         initComponents();
+    }
+    
+    public void setNextEncounter(EncounterEvent encounter){
+        this.textArea1.setText(encounter);
     }
 
     /**

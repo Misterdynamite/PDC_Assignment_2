@@ -10,11 +10,11 @@ package Abstracts.Logic;
 
 import Core.Player.*;
 
-public abstract class BridgingEvent {
+public abstract class BridgingEvent extends Event{
 
-    private String description;
+    private String conditionRequirement;
+    private String optionDescription;
     public boolean condition;
-    private Player player;
     public abstract void OutCome ();
 
 }

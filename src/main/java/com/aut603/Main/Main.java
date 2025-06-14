@@ -4,16 +4,27 @@
  */
 package com.aut603.Main;
 
-import Abstracts.Logic.Event;
+import Abstracts.Logic.EncounterEvent;
 
 /**
  *
  * @author DXG11
  */
 public class Main {
+    public Player player;
     
-    public Event getNextEvent(){
+    public EncounterEvent getNextEvent(){
         return null;
     }
+    
+    public void newPlayer(String name){
+        this.player = new Player(name);
+    }
+    
+    public void setPlayer(Player player){
+        this.player = player;
+    }
+    
+    
     
 }
