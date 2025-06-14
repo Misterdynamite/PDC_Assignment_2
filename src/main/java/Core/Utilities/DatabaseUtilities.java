@@ -1,4 +1,4 @@
-package Core.Database;
+package Core.Utilities;
 
 import Core.Player.Inventory;
 
@@ -70,4 +70,5 @@ public class DatabaseUtilities {
             throw new RuntimeException("Failed to convert journey log to CLOB", e);
         }
     }
+
 }
