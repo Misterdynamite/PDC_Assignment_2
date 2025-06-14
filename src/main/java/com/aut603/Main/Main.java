@@ -4,18 +4,23 @@
  */
 package com.aut603.Main;
 
-import Abstracts.Database.Database;
+import Core.Database.Database;
 import Abstracts.Logic.EncounterEvent;
 import Core.Player.Journey;
+
+import java.sql.SQLException;
 
 /**
  *
  * @author DXG11
  */
 public class Main {
-    public Database db = Database.getInstance();
+    public Database db = Core.Database.Database.getInstance();
     public Journey journey;
-    
+
+    public Main() throws SQLException {
+    }
+
     public EncounterEvent getNextEvent(){
         return null;
     }
