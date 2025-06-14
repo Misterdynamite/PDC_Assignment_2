@@ -9,8 +9,9 @@ public class Database extends Abstracts.Database.Database {
 
     protected DatabaseReader reader;
     protected DatabaseWriter writer;
+    private static Database db;
 
-    public Database() throws SQLException {
+    private Database() throws SQLException {
         super();
         this.url = "jdbc:derby:CYOADatabase;create=true";
         this.user = "DBAccess";
@@ -20,6 +21,13 @@ public class Database extends Abstracts.Database.Database {
         this.connection = new DatabaseConnection(url, user, password);
         DatabaseCreation creation = new DatabaseCreation(this);
         creation.initaliseDatabase();
+    }
+    
+    public static Database getInstance() throws SQLException{
+        if (db == null){
+            db = new Database();
+        }
+        return db;
     }
 
     public Journey loadJourneyFromIndex(int index) {

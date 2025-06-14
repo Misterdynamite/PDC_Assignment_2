@@ -18,6 +18,9 @@ public class LoadGame extends javax.swing.JPanel {
         this.man = man;
         initComponents();
     }
+    public void loadOptions(){
+        
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.

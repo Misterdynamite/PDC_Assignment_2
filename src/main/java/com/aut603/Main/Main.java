@@ -13,6 +13,7 @@ import Core.Player.Journey;
  * @author DXG11
  */
 public class Main {
+    public Database db = Database.getInstance();
     public Journey journey;
     
     public EncounterEvent getNextEvent(){
@@ -23,8 +24,8 @@ public class Main {
         this.journey = new Journey(name);
     }
     
-    public void setPlayer(int ID){
-        this.journey = 
+    public void setPlayer(int idx){
+        this.journey = db.loadJourneyFromIndex(idx);
     }
     
     

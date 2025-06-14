@@ -52,8 +52,8 @@ public class GuiMan {
         main.newPlayer(name);
         nextEncounter();
     }
-    public void setPlayer(int ID){
-        main.setPlayer(ID);
+    public void setPlayer(int idx){
+        main.setPlayer(idx);
     }
     
     public void gotToOutCome(BridgingEvent outCome){
