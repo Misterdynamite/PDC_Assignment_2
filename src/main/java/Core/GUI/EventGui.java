@@ -22,7 +22,7 @@ public class EventGui extends javax.swing.JPanel {
     }
     
     public void setNextEncounter(EncounterEvent encounter){
-        this.textArea1.setText(encounter);
+        this.textArea1.setText(encounter.getDescription());
     }
 
     /**

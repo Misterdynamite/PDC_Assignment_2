@@ -11,8 +11,21 @@ package Abstracts.Logic;
 
 public abstract class Event {
 
-     protected String description;
-     protected Player player;
+      protected String description;
+      Player player;
+     public void setPlayer(Player player){
+         this.player = player;
+     }
+     public Player getPlayer(){
+         return this.player;
+     }
+     public void setDescription(String description){
+         this.description = description;
+     }
+     
+     public String getDescription(){
+         return this.description;
+     }
      
 
 
