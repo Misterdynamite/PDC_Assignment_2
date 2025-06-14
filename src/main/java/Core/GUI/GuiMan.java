@@ -5,6 +5,7 @@
 package Core.GUI;
 
 
+import Abstracts.Logic.BridgingEvent;
 import Abstracts.Logic.Player;
 import com.aut603.Main.Main;
 import java.awt.CardLayout;
@@ -21,6 +22,8 @@ public class GuiMan {
     private JPanel mainPanel;
     private JFrame mainFrame;
     private Main main;
+    private EventGui eventGui;
+    private OutCome outComeGui;
 
     public GuiMan(Main main) {
         this.main = main;
@@ -31,9 +34,10 @@ public class GuiMan {
         mainPanel =  new JPanel(cardL);
         mainPanel.add(new MainMenu(this), "MAIN");
         mainPanel.add(new LoadGame(this), "LOAD");
-        EventGui eventGui = new EventGui(this);
+        eventGui = new EventGui(this);
         mainPanel.add(eventGui, "EVENT");
-        mainPanel.add(new OutCome(this), "OUTCOME");
+        outComeGui = new OutCome(this);
+        mainPanel.add(outComeGui, "OUTCOME");
         
         
         
@@ -41,13 +45,20 @@ public class GuiMan {
     }
     
     public void nextEncounter(){
-        
+        eventGui.setNextEncounter(main.getNextEvent());
+        cardL.show(eventGui, "EVENT");
     }
     public void newPlayer(String name){
         main.newPlayer(name);
+        nextEncounter();
     }
-    public void setPlayer(Player player){
-        main.setPlayer(player);
+    public void setPlayer(int ID){
+        main.setPlayer(ID);
+    }
+    
+    public void gotToOutCome(BridgingEvent outCome){
+        outComeGui.setOutCome(outCome);
+        cardL.show(mainPanel, "OUTCOME");
     }
     
     

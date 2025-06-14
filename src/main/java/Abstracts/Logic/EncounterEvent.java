@@ -9,7 +9,7 @@ package Abstracts.Logic;
  * @author DXG11
  */
 public abstract class  EncounterEvent extends Event{
-    private BridgingEvent optionOne, OptionTwo, OptionThree, OptionFour;
+    public BridgingEvent OptionOne, OptionTwo, OptionThree, OptionFour;
     
     
 }

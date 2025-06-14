@@ -16,13 +16,44 @@ public class EventGui extends javax.swing.JPanel {
      * Creates new form Event
      */
     private GuiMan man;
+    private EncounterEvent encounter;
     public EventGui(GuiMan man) {
         this.man = man;
         initComponents();
     }
     
     public void setNextEncounter(EncounterEvent encounter){
+        this.encounter = encounter;
         this.textArea1.setText(encounter.getDescription());
+        if (encounter.OptionOne.condition){
+            jButton2.setText(encounter.OptionOne.optionDescription);
+            jButton2.setEnabled(true);
+        } else{
+            jButton2.setText(encounter.OptionOne.conditionRequirement);
+            jButton2.setEnabled(false);
+        }
+        if (encounter.OptionTwo.condition){
+            jButton3.setText(encounter.OptionTwo.optionDescription);
+            jButton3.setEnabled(true);
+        } else{
+            jButton3.setText(encounter.OptionTwo.conditionRequirement);
+            jButton3.setEnabled(false);
+        }
+        if (encounter.OptionThree.condition){
+            jButton4.setText(encounter.OptionThree.optionDescription);
+            jButton4.setEnabled(true);
+        } else{
+            jButton4.setText(encounter.OptionThree.conditionRequirement);
+            jButton4.setEnabled(false);
+        }
+        if (encounter.OptionFour.condition){
+            jButton5.setText(encounter.OptionFour.optionDescription);
+            jButton5.setEnabled(true);
+        } else{
+            jButton5.setText(encounter.OptionFour.conditionRequirement);
+            jButton5.setEnabled(false);
+        }
+        
     }
 
     /**
@@ -40,7 +71,6 @@ public class EventGui extends javax.swing.JPanel {
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
 
         textArea1.setEditable(false);
 
@@ -48,15 +78,32 @@ public class EventGui extends javax.swing.JPanel {
         jButton1.setName("Save"); // NOI18N
 
         jButton2.setText("jButton2");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jButton3.setText("jButton3");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         jButton4.setText("jButton4");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
 
         jButton5.setText("jButton5");
-
-        jButton6.setText("Exit");
-        jButton6.setActionCommand("Exit");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -65,10 +112,7 @@ public class EventGui extends javax.swing.JPanel {
             .addComponent(textArea1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButton1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton6))
+                    .addComponent(jButton1)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(16, 16, 16)
                         .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -83,9 +127,7 @@ public class EventGui extends javax.swing.JPanel {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton6))
+                .addComponent(jButton1)
                 .addGap(7, 7, 7)
                 .addComponent(textArea1, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -98,6 +140,26 @@ public class EventGui extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        man.gotToOutCome(encounter.OptionOne);
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+        man.gotToOutCome(encounter.OptionTwo);
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        // TODO add your handling code here:
+        man.gotToOutCome(encounter.OptionThree);
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        // TODO add your handling code here:
+        man.gotToOutCome(encounter.OptionFour);
+    }//GEN-LAST:event_jButton5ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
@@ -105,7 +167,6 @@ public class EventGui extends javax.swing.JPanel {
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
     private java.awt.TextArea textArea1;
     // End of variables declaration//GEN-END:variables
 }

@@ -4,25 +4,27 @@
  */
 package com.aut603.Main;
 
+import Abstracts.Database.Database;
 import Abstracts.Logic.EncounterEvent;
+import Core.Player.Journey;
 
 /**
  *
  * @author DXG11
  */
 public class Main {
-    public Player player;
+    public Journey journey;
     
     public EncounterEvent getNextEvent(){
         return null;
     }
     
     public void newPlayer(String name){
-        this.player = new Player(name);
+        this.journey = new Journey(name);
     }
     
-    public void setPlayer(Player player){
-        this.player = player;
+    public void setPlayer(int ID){
+        this.journey = 
     }
     
     

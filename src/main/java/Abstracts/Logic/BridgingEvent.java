@@ -12,8 +12,8 @@ import Core.Player.*;
 
 public abstract class BridgingEvent extends Event{
 
-    private String conditionRequirement;
-    private String optionDescription;
+    public String conditionRequirement;
+    public String optionDescription;
     public boolean condition;
     public abstract void OutCome ();
 
