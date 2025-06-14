@@ -17,6 +17,7 @@ public class DatabaseCreation extends Abstracts.Database.DatabaseCreation {
         }
         String sql = "CREATE TABLE journeys (" +
                 "journey_id INT PRIMARY KEY," +
+                "saved_event VARCHAR(64)," +
                 "journey_log CLOB NOT NULL" +
                 ")";
         try {

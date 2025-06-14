@@ -40,6 +40,7 @@ public class DatabaseUtilities {
         if (clob == null) {
             return null;
         }
+
         try {
             String str = clob.getSubString(1, (int) clob.length());
             String[] names = str.split(",");
