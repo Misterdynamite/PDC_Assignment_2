@@ -9,6 +9,8 @@ import Abstracts.Logic.EncounterEvent;
 import Abstracts.Logic.Event;
 import Core.GUI.GuiMan;
 import Core.Player.Journey;
+import Core.Player.Player;
+
 import java.sql.SQLException;
 import java.util.List;
 
@@ -60,6 +62,9 @@ public class Main {
     }
     public void save(){
         db.saveJourney(journey);
+    }
+    public Player getPlayer() {
+        return journey.getPlayer();
     }
     
     public int getHP(){

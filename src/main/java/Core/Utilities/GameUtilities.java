@@ -3,6 +3,9 @@ package Core.Utilities;
 import Abstracts.Logic.EncounterEvent;
 import Abstracts.Logic.Event;
 import Core.Player.Player;
+import org.reflections.Reflections;
+
+import java.util.Set;
 
 public class GameUtilities {
 
@@ -17,9 +20,12 @@ public class GameUtilities {
 
     public static EncounterEvent generateRandomEvent(Player player) {
         try {
-            Class<?>[] eventClasses = Class.forName("Core.Events").getClasses();
+            Reflections reflections = new Reflections("Core.Events");
+            Set<Class<? extends EncounterEvent>> eventClassSet = reflections.getSubTypesOf(EncounterEvent.class);
+            Class<?>[] eventClasses = eventClassSet.toArray(new Class<?>[0]);
             int idx = (int) (Math.random() * eventClasses.length);
             String eventName = eventClasses[idx].getSimpleName();
+            System.out.println("Generating random event: " + eventName);
             return loadEvent(eventName, player);
         } catch (Exception e) {
             throw new RuntimeException("Failed to generate random event", e);

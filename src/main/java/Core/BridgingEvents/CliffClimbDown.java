@@ -21,7 +21,7 @@ public class CliffClimbDown extends Abstracts.Logic.BridgingEvent {
             setDescription("You successfully climb down the cliff.");
         } else {
             setDescription("You attempt to climb down the cliff, but you slip and fall and take 1 damage.");
-            this.player.changeHealth(1);
+            this.player.changeHealth(-1);
         }
     }
 }

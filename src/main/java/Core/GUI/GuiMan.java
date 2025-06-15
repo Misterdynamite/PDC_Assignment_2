@@ -51,14 +51,16 @@ public class GuiMan {
     }
     
     public void nextEncounter(){
-        Player player = (Player) main.getSavedEncounter().getPlayer();
+        Player player = main.getPlayer();
         eventGui.setNextEncounter(GameUtilities.generateRandomEvent(player));
-        cardL.show(eventGui, "EVENT");
+        cardL.show(mainPanel, "EVENT");
     }
     public void newPlayer(String name){
         main.newPlayer(name);
         nextEncounter();
     }
+
+
     
     
     public void gotToOutCome(BridgingEvent outCome){
