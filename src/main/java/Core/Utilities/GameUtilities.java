@@ -20,6 +20,7 @@ public class GameUtilities {
     }
     // Selects a random event from the available events in the Core.Events package
     // Mildly adapted from assignment 1, but mostly different as it uses the Reflections library instead of a hardcoded list
+    // Chatgpt consulted for the Reflections library usage
     public static EncounterEvent generateRandomEvent(Player player) {
         try {
             Reflections reflections = new Reflections("Core.Events");

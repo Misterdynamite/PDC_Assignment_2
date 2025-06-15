@@ -74,7 +74,6 @@ class PlayerTest {
         assertFalse(player.getInventory().isItemOwned(Item.SWORD));
 
         inventory.addItem(Item.SWORD);
-        System.out.println("Inventory after adding SWORD: " + inventory.getInventory());
         assertTrue(player.getInventory().isItemOwned(Item.SWORD));
     }
 
