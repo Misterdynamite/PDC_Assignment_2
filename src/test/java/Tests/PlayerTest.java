@@ -12,7 +12,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class PlayerTest {
 
-    // Concrete subclass of Player for testing
+
     static class TestPlayer extends Player {
         public TestPlayer(Inventory inventory) {
             super("TestPlayer");
@@ -26,7 +26,7 @@ class PlayerTest {
     @BeforeEach
     void setUp() {
         inventory = new Inventory();
-        inventory.INVENTORY_CAPACITY = 5; // directly set protected capacity
+        inventory.INVENTORY_CAPACITY = 5;
         player = new TestPlayer(inventory);
     }
 
