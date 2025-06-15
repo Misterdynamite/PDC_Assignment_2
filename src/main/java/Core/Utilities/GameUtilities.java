@@ -2,6 +2,7 @@ package Core.Utilities;
 
 import Abstracts.Logic.EncounterEvent;
 import Abstracts.Logic.Event;
+import Core.Player.Inventory;
 import Core.Player.Player;
 import org.reflections.Reflections;
 
@@ -30,5 +31,9 @@ public class GameUtilities {
         } catch (Exception e) {
             throw new RuntimeException("Failed to generate random event", e);
         }
+    }
+
+    public static Inventory.Item generateRandomItem() {
+        return Inventory.Item.values()[(int) (Math.random() * Inventory.Item.values().length)];
     }
 }
