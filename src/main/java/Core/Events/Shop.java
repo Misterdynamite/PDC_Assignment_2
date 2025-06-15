@@ -54,12 +54,12 @@ public class Shop extends Abstracts.Logic.EncounterEvent {
             // Check the player's conditions for buying the item and provide feedback
             boolean first = true;
             if (this.player.getMoney() < cost) {
-                requirement.append("you need at least ").append(cost).append(" gold");
+                requirement.append("you need ").append(cost).append(" gold");
                 first = false;
             }
             if (this.player.getInventory().isItemOwned(item)) {
                 if (!first) requirement.append(", ");
-                requirement.append("you must not already own ").append(StringUtilities.toTitleCase(item.name()));
+                requirement.append("you already own ").append(item.name());
                 first = false;
             }
             if (player.getInventory().getNumberOfItems() >= Inventory.INVENTORY_CAPACITY) {
