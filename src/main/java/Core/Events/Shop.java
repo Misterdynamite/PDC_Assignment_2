@@ -66,6 +66,9 @@ public class Shop extends Abstracts.Logic.EncounterEvent {
                 if (!first) requirement.append(", ");
                 requirement.append("your inventory must have space");
             }
+            if (first) {
+                requirement.append(".");
+            }
 
             this.conditionRequirement = requirement.toString();
             // Set the brief option description

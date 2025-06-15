@@ -3,15 +3,16 @@ package Tests;
 import Core.Player.Inventory;
 import Core.Player.Inventory.Item;
 import Core.Player.Player;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 
 import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class PlayerTest {
-
+    // Player unit tests.
+    // Important considering the game fundamentally revolves around the player.
+    // Meaning all methods in Player are crucial to the game logic.
 
     static class TestPlayer extends Player {
         public TestPlayer(Inventory inventory) {
@@ -25,8 +26,8 @@ class PlayerTest {
 
     @BeforeEach
     void setUp() {
+        Inventory.INVENTORY_CAPACITY = 5;
         inventory = new Inventory();
-        inventory.INVENTORY_CAPACITY = 5;
         player = new TestPlayer(inventory);
     }
 
