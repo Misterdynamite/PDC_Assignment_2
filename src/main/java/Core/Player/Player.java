@@ -5,7 +5,7 @@ import java.util.Arrays;
 
 public class Player extends Abstracts.Logic.Player {
     // Primarily adapted from assignment 1
-    public static final int STARTING_HEALTH = 1;
+    public static final int STARTING_HEALTH = 5;
     public static final int STARTING_MONEY = 50;
     public static final ArrayList<Inventory.Item> STARTING_INVENTORY
             = new ArrayList<>(Arrays.asList(Inventory.Item.SWORD, Inventory.Item.ROPE));
