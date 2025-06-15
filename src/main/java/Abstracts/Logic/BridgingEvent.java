@@ -11,6 +11,11 @@ package Abstracts.Logic;
 import Core.Player.*;
 
 public abstract class BridgingEvent extends Event{
+    
+    public BridgingEvent(Player player){
+        super(player);
+        
+    }
 
     public String conditionRequirement;
     public String optionDescription;
