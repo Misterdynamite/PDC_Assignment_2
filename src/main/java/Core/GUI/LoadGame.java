@@ -28,7 +28,8 @@ public class LoadGame extends javax.swing.JPanel {
         saves = man.getSaves();
         for (String[][] s : saves){
         indexes.add(s[0][0]);
-        savesList.add(Arrays.toString(s[1]));
+        savesList.add("Character Name: " + s[1][0] +
+                    ", HP: " + s[1][1] + ", Money: " + s[1][2]);
     }
         
     }
@@ -45,6 +46,8 @@ public class LoadGame extends javax.swing.JPanel {
         savesList = new java.awt.List();
         loadButton = new javax.swing.JButton();
         backButton = new javax.swing.JButton();
+
+        setPreferredSize(new java.awt.Dimension(600, 600));
 
         savesList.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {

@@ -6,7 +6,9 @@ package Core.GUI;
 
 import Abstracts.Logic.BridgingEvent;
 import Abstracts.Logic.EncounterEvent;
+import java.awt.Color;
 import javax.swing.JButton;
+import javax.swing.UIManager;
 
 /**
  *
@@ -37,18 +39,23 @@ public class EventGui extends javax.swing.JPanel {
     }
 
     private void buttonSetup(JButton button, BridgingEvent option) {
+        
         if (option != null) {
+            button.setVisible(true);
             if (option.condition) {
-                button.setText(option.optionDescription);
+                button.setText("<html>"+option.optionDescription+"</html>");
                 button.setEnabled(true);
             } else {
-                button.setText(option.conditionRequirement);
+                button.setText("<html>"+option.conditionRequirement+"</html>");
                 button.setEnabled(false);
             }
         } else {
             button.setText("");
             button.setEnabled(false);
+            button.setVisible(false);
         }
+        
+
     }
 
     /**
@@ -60,14 +67,15 @@ public class EventGui extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        eventText = new java.awt.TextArea();
         saveButton = new javax.swing.JButton();
         option1Button = new javax.swing.JButton();
         option2Button = new javax.swing.JButton();
         option3Button = new javax.swing.JButton();
         option4Button = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        eventText = new javax.swing.JTextArea();
 
-        eventText.setEditable(false);
+        setPreferredSize(new java.awt.Dimension(600, 600));
 
         saveButton.setText("Save");
         saveButton.setName("Save"); // NOI18N
@@ -77,6 +85,8 @@ public class EventGui extends javax.swing.JPanel {
             }
         });
 
+        option1Button.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
+        option1Button.setForeground(new java.awt.Color(0, 0, 0));
         option1Button.setText("jButton2");
         option1Button.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -84,6 +94,8 @@ public class EventGui extends javax.swing.JPanel {
             }
         });
 
+        option2Button.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
+        option2Button.setForeground(new java.awt.Color(0, 0, 0));
         option2Button.setText("jButton3");
         option2Button.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -91,6 +103,8 @@ public class EventGui extends javax.swing.JPanel {
             }
         });
 
+        option3Button.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
+        option3Button.setForeground(new java.awt.Color(0, 0, 0));
         option3Button.setText("jButton4");
         option3Button.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -98,6 +112,8 @@ public class EventGui extends javax.swing.JPanel {
             }
         });
 
+        option4Button.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
+        option4Button.setForeground(new java.awt.Color(0, 0, 0));
         option4Button.setText("jButton5");
         option4Button.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -105,37 +121,47 @@ public class EventGui extends javax.swing.JPanel {
             }
         });
 
+        eventText.setEditable(false);
+        eventText.setColumns(20);
+        eventText.setLineWrap(true);
+        eventText.setRows(5);
+        eventText.setWrapStyleWord(true);
+        jScrollPane1.setViewportView(eventText);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(eventText, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(saveButton)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(16, 16, 16)
-                        .addComponent(option1Button, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(option2Button)
-                        .addGap(5, 5, 5)
-                        .addComponent(option3Button, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(option4Button)))
-                .addGap(0, 59, Short.MAX_VALUE))
+                .addComponent(saveButton)
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(4, 4, 4)
+                .addComponent(option1Button, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(option2Button, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(option3Button, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(option4Button, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(7, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(saveButton)
-                .addGap(7, 7, 7)
-                .addComponent(eventText, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(option2Button, javax.swing.GroupLayout.DEFAULT_SIZE, 48, Short.MAX_VALUE)
-                    .addComponent(option3Button, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(option4Button, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(option1Button, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE, false)
+                    .addComponent(option1Button, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(option3Button, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(option2Button, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(option4Button, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -166,7 +192,8 @@ public class EventGui extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private java.awt.TextArea eventText;
+    private javax.swing.JTextArea eventText;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton option1Button;
     private javax.swing.JButton option2Button;
     private javax.swing.JButton option3Button;

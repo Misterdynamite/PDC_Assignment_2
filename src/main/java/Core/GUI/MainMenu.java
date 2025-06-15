@@ -16,7 +16,7 @@ public class MainMenu extends javax.swing.JPanel {
      * Creates new form MainMenu
      */
     private GuiMan man;
-    
+
     public MainMenu(GuiMan man) {
         this.man = man;
         initComponents();
@@ -33,6 +33,9 @@ public class MainMenu extends javax.swing.JPanel {
 
         NewGameButton = new javax.swing.JButton();
         LoadGameButton = new javax.swing.JButton();
+
+        setMaximumSize(new java.awt.Dimension(600, 600));
+        setPreferredSize(new java.awt.Dimension(600, 600));
 
         NewGameButton.setText("New Game");
         NewGameButton.addActionListener(new java.awt.event.ActionListener() {
@@ -53,26 +56,29 @@ public class MainMenu extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(143, 143, 143)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(LoadGameButton, javax.swing.GroupLayout.DEFAULT_SIZE, 97, Short.MAX_VALUE)
-                    .addComponent(NewGameButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(160, Short.MAX_VALUE))
+                .addGap(205, 205, 205)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(NewGameButton, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(LoadGameButton, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(207, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(108, 108, 108)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(223, Short.MAX_VALUE)
                 .addComponent(NewGameButton, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(76, 76, 76)
                 .addComponent(LoadGameButton, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(92, Short.MAX_VALUE))
+                .addGap(219, 219, 219))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void NewGameButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NewGameButtonActionPerformed
         // TODO add your handling code here:
-        man.newPlayer(JOptionPane.showInputDialog("What is your name?"));
+        String name = JOptionPane.showInputDialog("What is your name?");
+        if (name != null && !name.trim().isEmpty()) {
+            man.newPlayer(name.trim());
+        }
     }//GEN-LAST:event_NewGameButtonActionPerformed
 
     private void LoadGameButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LoadGameButtonActionPerformed
