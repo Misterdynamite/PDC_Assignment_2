@@ -62,7 +62,7 @@ public class RestArea extends Abstracts.Logic.EncounterEvent {
         public void OutCome() {
             Random random = new Random();
             int amountIncrement = random.nextInt(2) + 1;
-            int amount = Math.max(amountIncrement + player.getHealth(), Player.STARTING_HEALTH);
+            int amount = Math.min(amountIncrement + player.getHealth(), Player.STARTING_HEALTH);
             player.setHealth(amount);
             setDescription("You rest for a while and feel refreshed. You regain " + amountIncrement + "hp up to " + this.player.getHealth() + "hp.");
         }
