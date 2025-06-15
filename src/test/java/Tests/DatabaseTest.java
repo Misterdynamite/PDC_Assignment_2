@@ -72,12 +72,42 @@ class DatabaseTest {
 
     @Test
     void saveAndLoadJourneyTest() {
-        for (int i = 0; i < 30; i++) {
-            createDummyJourney();
-        }
-
+        Journey journey = new Journey("TestUser");
+        journey.setCurrentEvent(new TestEvent());
+        database.saveJourney(journey);
         Journey loadedJourney = database.loadJourneyFromIndex(1);
         assertNotNull(loadedJourney, "Loaded journey should not be null");
+        assertEquals(journey.getJourneyId(), loadedJourney.getJourneyId(),
+                "Loaded journey ID should match saved journey ID");
+        assertEquals(journey.getPlayer().getCharacterName(), loadedJourney.getPlayer().getCharacterName(),
+                "Loaded character name should match saved character name");
+        assertEquals(journey.getPlayer().getHealth(), loadedJourney.getPlayer().getHealth(),
+                "Loaded health should match saved health");
+        assertEquals(journey.getPlayer().getMoney(), loadedJourney.getPlayer().getMoney(),
+                "Loaded money should match saved money");
+        assertEquals(journey.getJourneyLog().toString(), loadedJourney.getJourneyLog().toString(),
+                "Loaded journey log should match saved journey log");
+        assertEquals(journey.getCurrentEvent().getClass().getSimpleName(), loadedJourney.getCurrentEvent().getClass().getSimpleName(),
+                "Loaded current event should match saved current event");
+        assertEquals(journey.getPlayer().getInventory().getInventory(), loadedJourney.getPlayer().getInventory().getInventory(),
+                "Loaded inventory should match saved inventory");
+
+    }
+
+    @Test
+    void iterativeJourneySaveTest() {
+        Journey journey = new Journey("TestUser");
+        journey.setCurrentEvent(new TestEvent());
+        for (int i = 1; i < 30; i++) {
+            journey.getPlayer().changeMoney(i);
+            database.saveJourney(journey);
+            Journey loadedJourney = database.loadJourneyFromIndex(1);
+
+            assertEquals(journey.getPlayer().getMoney(), loadedJourney.getPlayer().getMoney(),
+                    "Money should be incremented correctly after each save");
+        }
+
+
     }
 
     @Test
@@ -92,8 +122,6 @@ class DatabaseTest {
         for (String[][] journey : aliveJourneys) {
             assertEquals("TestUser", journey[1][0], "Character name should be 'TestUser'");
             assertEquals(count, Integer.parseInt(journey[0][0]), "Journey ID should match the count");
-            System.out.println("Journey ID: " + journey[0][0] + ", Character Name: " + journey[1][0] +
-                    ", HP: " + journey[1][1] + ", Money: " + journey[1][2]);
             count++;
         }
     }
