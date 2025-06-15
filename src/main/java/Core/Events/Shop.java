@@ -62,7 +62,7 @@ public class Shop extends Abstracts.Logic.EncounterEvent {
                 requirement.append("you must not already own ").append(StringUtilities.toTitleCase(item.name()));
                 first = false;
             }
-            if (player.getInventory().getNumberOfItems() >= player.getInventory().INVENTORY_CAPACITY) {
+            if (player.getInventory().getNumberOfItems() >= Inventory.INVENTORY_CAPACITY) {
                 if (!first) requirement.append(", ");
                 requirement.append("your inventory must have space");
             }
@@ -76,7 +76,7 @@ public class Shop extends Abstracts.Logic.EncounterEvent {
             // Actual boolean for whether the player can buy the item
             this.condition = (this.player.getMoney() >= cost &&
                     !this.player.getInventory().isItemOwned(item) &&
-                    player.getInventory().getNumberOfItems() < player.getInventory().INVENTORY_CAPACITY);
+                    player.getInventory().getNumberOfItems() < Inventory.INVENTORY_CAPACITY);
         }
 
         @Override
