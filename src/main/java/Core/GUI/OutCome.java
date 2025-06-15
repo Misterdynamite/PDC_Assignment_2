@@ -39,6 +39,11 @@ public class OutCome extends javax.swing.JPanel {
         ContinueButton = new javax.swing.JButton();
 
         ContinueButton.setText("Continue");
+        ContinueButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ContinueButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -59,6 +64,10 @@ public class OutCome extends javax.swing.JPanel {
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void ContinueButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ContinueButtonActionPerformed
+        man.nextEncounter();
+    }//GEN-LAST:event_ContinueButtonActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
