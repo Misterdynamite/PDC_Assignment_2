@@ -18,10 +18,11 @@ public class DatabaseReader extends Abstracts.Database.DatabaseReader {
         this.statement = database.getStatement();
     }
 
-    public ArrayList<String[][]> getAliveJourneysBrief()
-    {
+    public ArrayList<String[][]> getAliveJourneysBrief() {
         ArrayList<String[][]> journeys = new ArrayList<>();
         try {
+            // Query to get all journeys with characters that are still alive (hp > 0)
+            // Only returns brief data such as journey_id, character_name, hp, and money
             ResultSet resultSet = statement.executeQuery("SELECT journey_id, character_name, hp, money FROM characters WHERE hp > 0");
 
             while (resultSet.next()) {
@@ -42,13 +43,16 @@ public class DatabaseReader extends Abstracts.Database.DatabaseReader {
 
     public Journey loadJourneyFromIndex(int index) {
         try {
+            // Query and parsing logic to load a journey by its index in the database
             ResultSet journeyResult = statement.executeQuery(
                     "SELECT * FROM journeys WHERE journey_id = " + index);
 
             if (!journeyResult.next()) return null;
 
             int journeyId = journeyResult.getInt("journey_id");
+            // Retrieve the CLOB containing the journey log and the current event
             Clob journeyLogClob = journeyResult.getClob("journey_log");
+            // Get the current event from the journey
             String currentEvent = journeyResult.getString("saved_event");
             ArrayList<String> journeyLog = DatabaseUtilities.clobToJourneyLog(journeyLogClob);
 
@@ -65,6 +69,7 @@ public class DatabaseReader extends Abstracts.Database.DatabaseReader {
             Journey journey = new Journey(player);
             journey.setJourneyId(journeyId);
             journey.setJourneyLog(journeyLog);
+            // Load the event using the loadEvent method from GameUtilities
             journey.setCurrentEvent(GameUtilities.loadEvent(currentEvent, player));
 
             return journey;

@@ -7,7 +7,7 @@ public abstract class Player {
     protected int money;
     protected int health;
 
-
+    // Getters and Setters
     public Inventory getInventory() {
         return inventory;
     }

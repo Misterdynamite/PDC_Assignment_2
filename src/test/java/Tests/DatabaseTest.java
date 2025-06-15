@@ -34,7 +34,7 @@ class DatabaseTest {
             this.writer = new DatabaseWriter(this);
             this.creation = new DatabaseCreation(this);
 
-            creation.initaliseDatabase();
+            creation.initialiseDatabase();
         }
 
         public static Database getInstance() throws SQLException {
@@ -79,7 +79,7 @@ class DatabaseTest {
     @Test
     void tableCreationTest() throws SQLException {
         destruction.dropTables();
-        creation.initaliseDatabase();
+        creation.initialiseDatabase();
         Connection conn = database.getConnection();
         ResultSet rs = conn.getMetaData().getTables(null, null, "%", new String[]{"TABLE"});
         boolean journeyExists = false;

@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class Inventory extends Abstracts.Logic.Inventory {
     // Inventory
     protected final ArrayList<Item> inventory = new ArrayList<>();
-
+    public static int INVENTORY_CAPACITY = 3;
     // Item options
     public static enum Item {ROPE, BOMB, BOW, SWORD, LANTERN, LOCKPICK}
 

@@ -12,6 +12,7 @@ public abstract class DatabaseConnection {
     private Connection connection;
     private Statement statement;
 
+    // Constructor to initialize the database's connection
     public DatabaseConnection(String url, String user, String password) throws SQLException {
         this.url = url;
         this.user = user;
@@ -19,6 +20,7 @@ public abstract class DatabaseConnection {
         this.connect();
     }
 
+    // Establish a connection to the database
     public void connect() throws SQLException {
         try {
             this.connection = DriverManager.getConnection(url, user, password);
@@ -28,6 +30,7 @@ public abstract class DatabaseConnection {
         }
     }
 
+    // Close the database connection and statement
     public void disconnect() throws SQLException {
         try {
             if (this.statement != null && !this.statement.isClosed()) {
