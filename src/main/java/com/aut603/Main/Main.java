@@ -67,6 +67,10 @@ public class Main {
         return journey.getPlayer();
     }
     
+    public int getHP(){
+        return journey.getPlayer().getHealth();
+    }
+    
     public static void main(String[] args) throws SQLException {
         Main main = new Main();
         main.initaliseDB();

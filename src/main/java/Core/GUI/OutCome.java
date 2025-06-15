@@ -15,7 +15,9 @@ public class OutCome extends javax.swing.JPanel {
     /**
      * Creates new form OutCome
      */
-    GuiMan man;
+    private GuiMan man;
+    private boolean dead = false;
+    
     public OutCome(GuiMan man) {
         this.man = man;
         initComponents();
@@ -66,7 +68,16 @@ public class OutCome extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void ContinueButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ContinueButtonActionPerformed
-        man.nextEncounter();
+        if ( man.getHP() <= 0 && !dead){
+            dead = true;
+            EventText.setText("you are dead");
+        } else if (dead){
+            man.gotToMainMenu();
+        }else {
+                    man.nextEncounter();
+
+        }
+        
     }//GEN-LAST:event_ContinueButtonActionPerformed
 
 

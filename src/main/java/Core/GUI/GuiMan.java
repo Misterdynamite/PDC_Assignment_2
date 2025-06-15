@@ -94,6 +94,9 @@ public class GuiMan {
     public void save(){
         main.save();
     }
+    public int getHP(){
+        return main.getHP();
+    }
     
     
 }
