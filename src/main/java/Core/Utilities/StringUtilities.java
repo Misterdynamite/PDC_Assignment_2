@@ -1,11 +1,9 @@
 package Core.Utilities;
 
 public class StringUtilities {
+    // Rewritten from assignment 1
     // Converts a string to title case, where the first letter of each word is capitalized
     public static String toTitleCase(String input) {
-        if (input == null || input.isEmpty()) {
-            return input;
-        }
         String[] words = input.split(" ");
         StringBuilder titleCase = new StringBuilder();
 

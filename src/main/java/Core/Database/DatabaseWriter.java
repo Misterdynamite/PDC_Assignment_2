@@ -71,7 +71,7 @@ public class DatabaseWriter extends Abstracts.Database.DatabaseWriter {
                 }
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new RuntimeException("Failed to save journey: " + e.getMessage(), e);
         }
     }
 

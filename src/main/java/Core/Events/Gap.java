@@ -4,7 +4,7 @@ import Core.Player.Inventory;
 import Core.Player.Player;
 
 public class Gap extends Abstracts.Logic.EncounterEvent {
-
+    // Adapted from assignment 1
     public Gap(Player player) {
         super(player);
 

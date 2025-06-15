@@ -4,7 +4,7 @@ import Abstracts.Logic.EncounterEvent;
 import Abstracts.Logic.Event;
 
 public class Journey extends Abstracts.Logic.Journey {
-
+    // Primarily adapted from assignment 1
     protected Player player;
 
     private EncounterEvent currentEvent;

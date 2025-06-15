@@ -74,8 +74,7 @@ public class DatabaseReader extends Abstracts.Database.DatabaseReader {
 
             return journey;
         } catch (SQLException e) {
-            e.printStackTrace();
-            return null;
+            throw new RuntimeException("Failed to load journey from index: " + index, e);
         }
     }
 }

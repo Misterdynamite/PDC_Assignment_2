@@ -4,6 +4,7 @@ import Core.Player.Inventory;
 
 import java.sql.Clob;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class DatabaseUtilities {
 
@@ -15,11 +16,7 @@ public class DatabaseUtilities {
         try {
             String str = clob.getSubString(1, (int) clob.length());
             String[] lines = str.split("\\r?\\n");
-            ArrayList<String> log = new ArrayList<>();
-            for (String line : lines) {
-                log.add(line);
-            }
-            return log;
+            return new ArrayList<>(Arrays.asList(lines));
         } catch (Exception e) {
             throw new RuntimeException("Failed to convert CLOB to journey log", e);
         }

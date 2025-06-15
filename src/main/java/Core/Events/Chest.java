@@ -8,7 +8,7 @@ import Core.Utilities.StringUtilities;
 import java.util.Random;
 
 public class Chest extends Abstracts.Logic.EncounterEvent {
-
+    // Adapted from assignment 1
     public Chest(Player player) {
         super(player);
 

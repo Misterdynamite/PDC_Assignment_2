@@ -3,6 +3,8 @@ package Core.Player;
 import java.util.ArrayList;
 
 public class Inventory extends Abstracts.Logic.Inventory {
+    // Primarily adapted from assignment 1
+
     // Inventory
     protected final ArrayList<Item> inventory = new ArrayList<>();
     public static int INVENTORY_CAPACITY = 3;

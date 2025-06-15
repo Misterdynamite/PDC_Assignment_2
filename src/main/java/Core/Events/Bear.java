@@ -6,7 +6,7 @@ import Core.Player.Player;
 import java.util.Random;
 
 public class Bear extends Abstracts.Logic.EncounterEvent {
-
+    // Adapted from assignment 1
     public Bear(Player player) {
         super(player);
 
