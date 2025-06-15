@@ -7,7 +7,8 @@ package Core.GUI;
 
 import Abstracts.Logic.BridgingEvent;
 import Abstracts.Logic.EncounterEvent;
-import Abstracts.Logic.Player;
+import Core.Player.Player;
+import Core.Utilities.GameUtilities;
 import com.aut603.Main.Main;
 import java.awt.CardLayout;
 import java.util.ArrayList;
@@ -44,14 +45,11 @@ public class GuiMan {
         mainPanel.add(eventGui, "EVENT");
         outComeGui = new OutCome(this);
         mainPanel.add(outComeGui, "OUTCOME");
-        
-        
-        
-        
     }
     
     public void nextEncounter(){
-        eventGui.setNextEncounter(main.getNextEvent());
+        Player player = (Player) main.getSavedEncounter().getPlayer();
+        eventGui.setNextEncounter(GameUtilities.generateRandomEvent(player));
         cardL.show(eventGui, "EVENT");
     }
     public void newPlayer(String name){
