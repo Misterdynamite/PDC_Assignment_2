@@ -1,3 +1,4 @@
 /target/
 /TestCYOADatabase/
 /CYOADatabase/
+derby.log
