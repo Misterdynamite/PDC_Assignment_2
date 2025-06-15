@@ -4,6 +4,9 @@
  */
 package Core.GUI;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+
 /**
  *
  * @author DXG11
@@ -14,11 +17,18 @@ public class LoadGame extends javax.swing.JPanel {
      * Creates new form LoadGame
      */
     private GuiMan man;
+    private ArrayList<String[][]> saves;
+    private ArrayList<String> indexes;
     public LoadGame(GuiMan man) {
         this.man = man;
         initComponents();
     }
     public void loadOptions(){
+        saves = man.getSaves();
+        for (String[][] s : saves){
+        indexes.add(s[0][0]);
+        savesList.add(Arrays.toString(s[1]));
+    }
         
     }
 
@@ -31,49 +41,83 @@ public class LoadGame extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        list1 = new java.awt.List();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        savesList = new java.awt.List();
+        loadButton = new javax.swing.JButton();
+        backButton = new javax.swing.JButton();
 
-        jButton1.setText("jButton1");
+        savesList.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                savesListItemStateChanged(evt);
+            }
+        });
+        savesList.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                savesListActionPerformed(evt);
+            }
+        });
 
-        jButton2.setText("jButton2");
+        loadButton.setText("Load");
+        loadButton.setEnabled(false);
+        loadButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                loadButtonActionPerformed(evt);
+            }
+        });
 
-        jButton3.setText("jButton3");
+        backButton.setText("Go back");
+        backButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                backButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(list1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(savesList, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addGap(10, 10, 10)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(loadButton, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 81, Short.MAX_VALUE))
+                .addComponent(backButton, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 191, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(list1, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(savesList, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 59, Short.MAX_VALUE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(loadButton, javax.swing.GroupLayout.DEFAULT_SIZE, 59, Short.MAX_VALUE)
+                    .addComponent(backButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(0, 15, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void savesListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_savesListActionPerformed
+        
+    }//GEN-LAST:event_savesListActionPerformed
+
+    private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
+        man.gotToMainMenu();
+    }//GEN-LAST:event_backButtonActionPerformed
+
+    private void savesListItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_savesListItemStateChanged
+        loadButton.setEnabled(savesList.getSelectedIndex() !=-1);
+    }//GEN-LAST:event_savesListItemStateChanged
+
+    private void loadButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loadButtonActionPerformed
+        int index =Integer.parseInt(indexes.get(savesList.getSelectedIndex()));
+        // indexes index and savesList index should be the same as the db primary keys are loaded in as part of saves
+        
+        man.loadGame(index);
+    }//GEN-LAST:event_loadButtonActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private java.awt.List list1;
+    private javax.swing.JButton backButton;
+    private javax.swing.JButton loadButton;
+    private java.awt.List savesList;
     // End of variables declaration//GEN-END:variables
 }

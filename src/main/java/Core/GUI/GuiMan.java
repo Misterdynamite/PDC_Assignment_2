@@ -6,9 +6,11 @@ package Core.GUI;
 
 
 import Abstracts.Logic.BridgingEvent;
+import Abstracts.Logic.EncounterEvent;
 import Abstracts.Logic.Player;
 import com.aut603.Main.Main;
 import java.awt.CardLayout;
+import java.util.ArrayList;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
@@ -24,6 +26,8 @@ public class GuiMan {
     private Main main;
     private EventGui eventGui;
     private OutCome outComeGui;
+    private LoadGame loadGameGui;
+    private MainMenu mainMenuGui;
 
     public GuiMan(Main main) {
         this.main = main;
@@ -32,8 +36,10 @@ public class GuiMan {
         mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         cardL = new CardLayout();
         mainPanel =  new JPanel(cardL);
-        mainPanel.add(new MainMenu(this), "MAIN");
-        mainPanel.add(new LoadGame(this), "LOAD");
+        mainMenuGui = new MainMenu(this);
+        mainPanel.add(mainMenuGui, "MAIN");
+        loadGameGui = new LoadGame(this);
+        mainPanel.add(loadGameGui, "LOAD");
         eventGui = new EventGui(this);
         mainPanel.add(eventGui, "EVENT");
         outComeGui = new OutCome(this);
@@ -52,13 +58,38 @@ public class GuiMan {
         main.newPlayer(name);
         nextEncounter();
     }
-    public void setPlayer(int idx){
-        main.setPlayer(idx);
-    }
+    
     
     public void gotToOutCome(BridgingEvent outCome){
         outComeGui.setOutCome(outCome);
         cardL.show(mainPanel, "OUTCOME");
+    }
+    private void loadSaves(){
+        main.loadSaves();
+    }
+    public ArrayList<String[][]> getSaves(){
+        return main.getSaves();
+    }
+    public void gotToLoad(){
+        loadSaves();
+        loadGameGui.loadOptions();
+        cardL.show(mainPanel, "LOAD");
+    }
+    public void gotToMainMenu(){
+        cardL.show(mainPanel, "MAIN");
+    }
+    
+    public void loadGame(int index){
+        main.setPlayer(index);
+        eventGui.setNextEncounter(main.getSavedEncounter());
+        cardL.show(mainPanel, "EVENT");
+        
+    }
+    public void setCurrentEncounter(EncounterEvent e){
+        main.setCurrentEncounter(e);
+    }
+    public void save(){
+        main.save();
     }
     
     

@@ -24,34 +24,35 @@ public class EventGui extends javax.swing.JPanel {
     
     public void setNextEncounter(EncounterEvent encounter){
         this.encounter = encounter;
-        this.textArea1.setText(encounter.getDescription());
+        man.setCurrentEncounter(encounter);
+        this.eventText.setText(encounter.getDescription());
         if (encounter.OptionOne.condition){
-            jButton2.setText(encounter.OptionOne.optionDescription);
-            jButton2.setEnabled(true);
+            option1Button.setText(encounter.OptionOne.optionDescription);
+            option1Button.setEnabled(true);
         } else{
-            jButton2.setText(encounter.OptionOne.conditionRequirement);
-            jButton2.setEnabled(false);
+            option1Button.setText(encounter.OptionOne.conditionRequirement);
+            option1Button.setEnabled(false);
         }
         if (encounter.OptionTwo.condition){
-            jButton3.setText(encounter.OptionTwo.optionDescription);
-            jButton3.setEnabled(true);
+            option2Button.setText(encounter.OptionTwo.optionDescription);
+            option2Button.setEnabled(true);
         } else{
-            jButton3.setText(encounter.OptionTwo.conditionRequirement);
-            jButton3.setEnabled(false);
+            option2Button.setText(encounter.OptionTwo.conditionRequirement);
+            option2Button.setEnabled(false);
         }
         if (encounter.OptionThree.condition){
-            jButton4.setText(encounter.OptionThree.optionDescription);
-            jButton4.setEnabled(true);
+            option3Button.setText(encounter.OptionThree.optionDescription);
+            option3Button.setEnabled(true);
         } else{
-            jButton4.setText(encounter.OptionThree.conditionRequirement);
-            jButton4.setEnabled(false);
+            option3Button.setText(encounter.OptionThree.conditionRequirement);
+            option3Button.setEnabled(false);
         }
         if (encounter.OptionFour.condition){
-            jButton5.setText(encounter.OptionFour.optionDescription);
-            jButton5.setEnabled(true);
+            option4Button.setText(encounter.OptionFour.optionDescription);
+            option4Button.setEnabled(true);
         } else{
-            jButton5.setText(encounter.OptionFour.conditionRequirement);
-            jButton5.setEnabled(false);
+            option4Button.setText(encounter.OptionFour.conditionRequirement);
+            option4Button.setEnabled(false);
         }
         
     }
@@ -65,43 +66,48 @@ public class EventGui extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        textArea1 = new java.awt.TextArea();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
+        eventText = new java.awt.TextArea();
+        saveButton = new javax.swing.JButton();
+        option1Button = new javax.swing.JButton();
+        option2Button = new javax.swing.JButton();
+        option3Button = new javax.swing.JButton();
+        option4Button = new javax.swing.JButton();
 
-        textArea1.setEditable(false);
+        eventText.setEditable(false);
 
-        jButton1.setText("Save");
-        jButton1.setName("Save"); // NOI18N
-
-        jButton2.setText("jButton2");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        saveButton.setText("Save");
+        saveButton.setName("Save"); // NOI18N
+        saveButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                saveButtonActionPerformed(evt);
             }
         });
 
-        jButton3.setText("jButton3");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        option1Button.setText("jButton2");
+        option1Button.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                option1ButtonActionPerformed(evt);
             }
         });
 
-        jButton4.setText("jButton4");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
+        option2Button.setText("jButton3");
+        option2Button.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+                option2ButtonActionPerformed(evt);
             }
         });
 
-        jButton5.setText("jButton5");
-        jButton5.addActionListener(new java.awt.event.ActionListener() {
+        option3Button.setText("jButton4");
+        option3Button.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton5ActionPerformed(evt);
+                option3ButtonActionPerformed(evt);
+            }
+        });
+
+        option4Button.setText("jButton5");
+        option4Button.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                option4ButtonActionPerformed(evt);
             }
         });
 
@@ -109,64 +115,68 @@ public class EventGui extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(textArea1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(eventText, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton1)
+                    .addComponent(saveButton)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(16, 16, 16)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(option1Button, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton3)
+                        .addComponent(option2Button)
                         .addGap(5, 5, 5)
-                        .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(option3Button, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton5)))
+                        .addComponent(option4Button)))
                 .addGap(0, 59, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jButton1)
+                .addComponent(saveButton)
                 .addGap(7, 7, 7)
-                .addComponent(textArea1, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(eventText, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, 48, Short.MAX_VALUE)
-                    .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(option2Button, javax.swing.GroupLayout.DEFAULT_SIZE, 48, Short.MAX_VALUE)
+                    .addComponent(option3Button, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(option4Button, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(option1Button, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void option1ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_option1ButtonActionPerformed
         // TODO add your handling code here:
         man.gotToOutCome(encounter.OptionOne);
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_option1ButtonActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void option2ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_option2ButtonActionPerformed
         // TODO add your handling code here:
         man.gotToOutCome(encounter.OptionTwo);
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_option2ButtonActionPerformed
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+    private void option3ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_option3ButtonActionPerformed
         // TODO add your handling code here:
         man.gotToOutCome(encounter.OptionThree);
-    }//GEN-LAST:event_jButton4ActionPerformed
+    }//GEN-LAST:event_option3ButtonActionPerformed
 
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+    private void option4ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_option4ButtonActionPerformed
         // TODO add your handling code here:
         man.gotToOutCome(encounter.OptionFour);
-    }//GEN-LAST:event_jButton5ActionPerformed
+    }//GEN-LAST:event_option4ButtonActionPerformed
+
+    private void saveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveButtonActionPerformed
+        man.save();
+    }//GEN-LAST:event_saveButtonActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
-    private java.awt.TextArea textArea1;
+    private java.awt.TextArea eventText;
+    private javax.swing.JButton option1Button;
+    private javax.swing.JButton option2Button;
+    private javax.swing.JButton option3Button;
+    private javax.swing.JButton option4Button;
+    private javax.swing.JButton saveButton;
     // End of variables declaration//GEN-END:variables
 }
