@@ -9,6 +9,11 @@ package Abstracts.Logic;
  * @author DXG11
  */
 public abstract class  EncounterEvent extends Event{
+    
+    public EncounterEvent(Player player){
+        super(player);
+        
+    }
     public BridgingEvent OptionOne, OptionTwo, OptionThree, OptionFour;
     
     
