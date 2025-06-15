@@ -41,7 +41,7 @@ public class Chest extends Abstracts.Logic.EncounterEvent {
             StringBuilder output = new StringBuilder();
             output.append(player.getCharacterName()).append(" used a lockpick to open the chest and found ");
 
-            if (player.getInventory().addItem(itemFound)) {
+            if (!player.getInventory().isItemOwned(itemFound) && !player.getInventory().isFull()) {
                 output.append("a ").append(StringUtilities.toTitleCase(itemFound.name())).append(".");
             } else {
                 int coins = new Random().nextInt(100) + 1;

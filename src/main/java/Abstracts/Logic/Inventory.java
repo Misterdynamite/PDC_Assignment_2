@@ -23,6 +23,10 @@ public abstract class Inventory {
         return this.inventory.contains(itemSearch);
     }
 
+    public boolean isFull() {
+        return this.inventory.size() >= INVENTORY_CAPACITY;
+    }
+
     public static enum Item {}
 
 

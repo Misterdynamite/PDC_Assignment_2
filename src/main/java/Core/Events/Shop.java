@@ -59,7 +59,7 @@ public class Shop extends Abstracts.Logic.EncounterEvent {
             }
             if (this.player.getInventory().isItemOwned(item)) {
                 if (!first) requirement.append(", ");
-                requirement.append("you already own ").append(item.name());
+                requirement.append("you already own ").append(StringUtilities.toTitleCase(item.name()));
                 first = false;
             }
             if (player.getInventory().getNumberOfItems() >= Inventory.INVENTORY_CAPACITY) {
