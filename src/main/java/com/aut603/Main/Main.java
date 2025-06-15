@@ -7,6 +7,7 @@ package com.aut603.Main;
 import Core.Database.Database;
 import Abstracts.Logic.EncounterEvent;
 import Abstracts.Logic.Event;
+import Core.GUI.GuiMan;
 import Core.Player.Journey;
 import java.sql.SQLException;
 import java.util.List;
@@ -59,6 +60,13 @@ public class Main {
     }
     public void save(){
         db.saveJourney(journey);
+    }
+    
+    public static void main(String[] args) throws SQLException {
+        Main main = new Main();
+        main.initaliseDB();
+        GuiMan gui = new GuiMan(main);
+        gui.gotToMainMenu();
     }
     
 }

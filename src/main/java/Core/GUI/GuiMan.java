@@ -45,6 +45,9 @@ public class GuiMan {
         mainPanel.add(eventGui, "EVENT");
         outComeGui = new OutCome(this);
         mainPanel.add(outComeGui, "OUTCOME");
+        mainFrame.add(mainPanel);
+        mainFrame.setSize(800, 800);
+        mainFrame.setVisible(true);
     }
     
     public void nextEncounter(){

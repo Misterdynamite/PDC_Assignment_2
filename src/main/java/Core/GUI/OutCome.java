@@ -21,8 +21,9 @@ public class OutCome extends javax.swing.JPanel {
         initComponents();
     }
     public void setOutCome(BridgingEvent outCome){
-        EventText.setText(outCome.getDescription());
         outCome.OutCome();
+        EventText.setText(outCome.getDescription());
+        
     }
 
     /**

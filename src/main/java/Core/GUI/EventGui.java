@@ -26,28 +26,28 @@ public class EventGui extends javax.swing.JPanel {
         this.encounter = encounter;
         man.setCurrentEncounter(encounter);
         this.eventText.setText(encounter.getDescription());
-        if (encounter.OptionOne.condition){
+        if (encounter.OptionOne!= null && encounter.OptionOne.condition){
             option1Button.setText(encounter.OptionOne.optionDescription);
             option1Button.setEnabled(true);
         } else{
             option1Button.setText(encounter.OptionOne.conditionRequirement);
             option1Button.setEnabled(false);
         }
-        if (encounter.OptionTwo.condition){
+        if (encounter.OptionTwo!= null && encounter.OptionTwo.condition){
             option2Button.setText(encounter.OptionTwo.optionDescription);
             option2Button.setEnabled(true);
         } else{
             option2Button.setText(encounter.OptionTwo.conditionRequirement);
             option2Button.setEnabled(false);
         }
-        if (encounter.OptionThree.condition){
+        if (encounter.OptionThree!= null && encounter.OptionThree.condition){
             option3Button.setText(encounter.OptionThree.optionDescription);
             option3Button.setEnabled(true);
         } else{
             option3Button.setText(encounter.OptionThree.conditionRequirement);
             option3Button.setEnabled(false);
         }
-        if (encounter.OptionFour.condition){
+        if (encounter.OptionFour!= null && encounter.OptionFour.condition){
             option4Button.setText(encounter.OptionFour.optionDescription);
             option4Button.setEnabled(true);
         } else{
