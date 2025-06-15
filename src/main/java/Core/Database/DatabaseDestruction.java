@@ -8,6 +8,9 @@ public class DatabaseDestruction extends Abstracts.Database.DatabaseDestruction 
         super(database);
     }
 
+
+    // This method is used to truncate table data.
+    // Only used in unit tests.
     public void truncateTables()
     {
         try {
@@ -17,7 +20,8 @@ public class DatabaseDestruction extends Abstracts.Database.DatabaseDestruction 
             throw new RuntimeException("Failed to truncate tables", e);
         }
     }
-
+    // This method is used to drop tables.
+    // Only used in unit tests.
     public void dropTables()
     {
         try {

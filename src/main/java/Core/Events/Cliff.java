@@ -30,7 +30,7 @@ public class Cliff extends Abstracts.Logic.EncounterEvent {
             if (random.nextInt(100) < 50) {
                 setDescription("You successfully climb down the cliff.");
             } else {
-                setDescription("You attempt to climb down the cliff, but you slip and fall and take 1 damage.");
+                setDescription("You attempt to climb down the cliff, but you slip and fall and take 1 damage, you now have " + (this.player.getHealth() - 1) + " health.");
                 this.player.changeHealth(-1);
             }
         }

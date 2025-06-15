@@ -16,11 +16,11 @@ public abstract class Database {
     public Database() {
     }
 
-
+    // Get statement from the database connection
     public Statement getStatement() {
         return this.connection.getStatement();
     }
-
+    // Get connection
     public Connection getConnection() {
         return this.connection.getConnection();
     }

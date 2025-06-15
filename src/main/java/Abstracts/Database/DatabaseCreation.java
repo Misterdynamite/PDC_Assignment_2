@@ -12,6 +12,7 @@ public abstract class DatabaseCreation {
         this.database = database;
         this.statement = this.database.getStatement();
     }
+    // Check if a table exists in the database
     public boolean checkIfTableExists(String tableName) {
         try {
             DatabaseMetaData meta = this.database.getConnection().getMetaData();

@@ -6,11 +6,13 @@ public class DatabaseCreation extends Abstracts.Database.DatabaseCreation {
         super(database);
     }
 
-    public void initaliseDatabase() {
+    // Initialises the database by creating the necessary tables.
+    public void initialiseDatabase() {
         this.createJourneyTable();
         this.createCharacterTable();
     }
 
+    // Creates the journey table if it does not exist.
     public boolean createJourneyTable() {
         if (this.checkIfTableExists("journeys")) {
             return true;
@@ -28,7 +30,7 @@ public class DatabaseCreation extends Abstracts.Database.DatabaseCreation {
             return false;
         }
     }
-
+    // Creates the character table if it does not exist.
     public boolean createCharacterTable() {
         if (this.checkIfTableExists("characters")) {
             return true;

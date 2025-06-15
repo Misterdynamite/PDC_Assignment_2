@@ -1,9 +1,8 @@
 package Tests;
 
-// test does clear out all the tables in the database for testing purposes due to using the same class
-
 
 import Core.Database.*;
+import Core.Events.RestArea;
 import Core.Player.Journey;
 import org.junit.jupiter.api.*;
 
@@ -16,6 +15,8 @@ import java.util.Random;
 import static org.junit.jupiter.api.Assertions.*;
 
 class DatabaseTest {
+    // Database unit tests.
+    // Ensures that all use cases for the database are covered and that the database can handle the expected content.
     Database database;
     DatabaseDestruction destruction;
     DatabaseCreation creation;
@@ -33,7 +34,7 @@ class DatabaseTest {
             this.writer = new DatabaseWriter(this);
             this.creation = new DatabaseCreation(this);
 
-            creation.initaliseDatabase();
+            creation.initialiseDatabase();
         }
 
         public static Database getInstance() throws SQLException {
@@ -54,6 +55,12 @@ class DatabaseTest {
 
     }
 
+    // Data needs to be purged between tests.
+    @AfterEach
+    void tearDown() {
+        destruction.truncateTables();
+    }
+
     public void createDummyJourney() {
 
         Random random = new Random();
@@ -63,21 +70,17 @@ class DatabaseTest {
             sb.append((char) ('A' + random.nextInt(26)));
         }
         journey.addToJourney(sb.toString());
-        journey.setCurrentEvent(new TestEvent(journey.getPlayer()));
+        journey.setCurrentEvent(new RestArea(journey.getPlayer()));
         database.saveJourney(journey);
 
 
     }
 
-    @AfterEach
-    void tearDown() {
-        destruction.truncateTables();
-    }
-
+    // Test to ensure that the database can be created and initialised without issues.
     @Test
     void tableCreationTest() throws SQLException {
         destruction.dropTables();
-        creation.initaliseDatabase();
+        creation.initialiseDatabase();
         Connection conn = database.getConnection();
         ResultSet rs = conn.getMetaData().getTables(null, null, "%", new String[]{"TABLE"});
         boolean journeyExists = false;
@@ -91,10 +94,14 @@ class DatabaseTest {
         assertTrue(charactersExists, "Table 'Characters' should exist");
     }
 
+    // Test to ensure that the database can save and load a journey 1:1 without data loss/issues.
+    // Important to ensure that the database and relevant parsing is working as intended.
+    // Do not need to test loading a bad ID due to only loadable journeys being those that are alive, and the player is
+    // unable to load a journey that is dead due to how the UI is set up.
     @Test
     void saveAndLoadJourneyTest() {
         Journey journey = new Journey("TestUser");
-        journey.setCurrentEvent(new TestEvent(journey.getPlayer()));
+        journey.setCurrentEvent(new RestArea(journey.getPlayer()));
         database.saveJourney(journey);
         Journey loadedJourney = database.loadJourneyFromIndex(1);
         assertNotNull(loadedJourney, "Loaded journey should not be null");
@@ -115,10 +122,13 @@ class DatabaseTest {
 
     }
 
+    // Test to ensure that the database can save and load the same journey multiple times without data loss/issues.
+    // Important to ensure that the database and relevant parsing is working as intended as the player progresses
+    // through the game.
     @Test
     void iterativeJourneySaveTest() {
         Journey journey = new Journey("TestUser");
-        journey.setCurrentEvent(new TestEvent(journey.getPlayer()));
+        journey.setCurrentEvent(new RestArea(journey.getPlayer()));
         for (int i = 1; i < 30; i++) {
             journey.getPlayer().changeMoney(i);
             database.saveJourney(journey);
@@ -131,6 +141,9 @@ class DatabaseTest {
 
     }
 
+    // Test to ensure that the database can retrieve a list of alive journeys and that the data is correct.
+    // Also ensures that the database can handle multiple journeys and that the journeyIds are correct.
+    // Important to ensure that the database saving method is working properly.
     @Test
     void viewJourneyTest() {
 

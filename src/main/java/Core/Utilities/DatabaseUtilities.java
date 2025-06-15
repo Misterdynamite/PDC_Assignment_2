@@ -6,6 +6,8 @@ import java.sql.Clob;
 import java.util.ArrayList;
 
 public class DatabaseUtilities {
+
+    // Convert a Clob to an ArrayList representing the journey log
     public static ArrayList<String> clobToJourneyLog(Clob clob) {
         if (clob == null) {
             return null;
@@ -23,8 +25,24 @@ public class DatabaseUtilities {
         }
     }
 
-    public static Clob inventoryToClob(ArrayList<Inventory.Item> items)
-    {
+    // Converts an ArrayList of Journey log entries to a CLOB
+    public static Clob journeyLogToClob(ArrayList<String> log) {
+        try {
+            if (log == null) {
+                return null;
+            }
+            StringBuilder sb = new StringBuilder();
+            for (String entry : log) {
+                sb.append(entry).append("\n");
+            }
+            return new javax.sql.rowset.serial.SerialClob(sb.toString().toCharArray());
+        } catch (Exception e) {
+            throw new RuntimeException("Failed to convert journey log to CLOB", e);
+        }
+    }
+
+    // Converts a Clob to an ArrayList of Inventory.Item
+    public static Clob inventoryToClob(ArrayList<Inventory.Item> items) {
         try {
             StringBuilder sb = new StringBuilder();
             for (Inventory.Item item : items) {
@@ -36,6 +54,7 @@ public class DatabaseUtilities {
         }
     }
 
+    // Converts a CLOB to an ArrayList of Inventory.Item
     public static ArrayList<Inventory.Item> clobToInventory(Clob clob) {
         if (clob == null) {
             return null;
@@ -56,19 +75,5 @@ public class DatabaseUtilities {
         }
     }
 
-    public static Clob journeyLogToClob(ArrayList<String> log) {
-        try {
-            if (log == null) {
-                return null;
-            }
-            StringBuilder sb = new StringBuilder();
-            for (String entry : log) {
-                sb.append(entry).append("\n");
-            }
-            return new javax.sql.rowset.serial.SerialClob(sb.toString().toCharArray());
-        } catch (Exception e) {
-            throw new RuntimeException("Failed to convert journey log to CLOB", e);
-        }
-    }
 
 }

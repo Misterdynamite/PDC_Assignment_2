@@ -6,7 +6,6 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.List;
 
 public class Database extends Abstracts.Database.Database {
 
@@ -27,7 +26,7 @@ public class Database extends Abstracts.Database.Database {
         this.writer = new DatabaseWriter(this);
         this.creation = new DatabaseCreation(this);
 
-        creation.initaliseDatabase();
+        creation.initialiseDatabase();
     }
 
     public static Database getInstance() throws SQLException {

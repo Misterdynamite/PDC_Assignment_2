@@ -6,14 +6,9 @@ package com.aut603.Main;
 
 import Core.Database.Database;
 import Abstracts.Logic.EncounterEvent;
-import Abstracts.Logic.Event;
 import Core.GUI.GuiMan;
 import Core.Player.Journey;
 import Core.Player.Player;
-
-import java.sql.SQLException;
-import java.util.List;
-
 import java.sql.SQLException;
 import java.util.ArrayList;
 
@@ -30,12 +25,8 @@ public class Main {
 
     public Main() throws SQLException {
     }
-
-    public EncounterEvent getNextEvent(){
-        return null;
-    }
     
-    public void initaliseDB() throws SQLException{
+    public void initialiseDB() throws SQLException{
          db = Database.getInstance();
     }
     
@@ -58,6 +49,7 @@ public class Main {
         return journey.getCurrentEvent();
     }
     public void setCurrentEncounter(EncounterEvent e){
+        journey.addToJourney(e.getClass().getSimpleName());
         journey.setCurrentEvent(e);
     }
     public void save(){
@@ -73,7 +65,7 @@ public class Main {
     
     public static void main(String[] args) throws SQLException {
         Main main = new Main();
-        main.initaliseDB();
+        main.initialiseDB();
         GuiMan gui = new GuiMan(main);
         gui.gotToMainMenu();
     }
