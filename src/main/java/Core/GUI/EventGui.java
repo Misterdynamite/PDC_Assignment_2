@@ -4,7 +4,9 @@
  */
 package Core.GUI;
 
+import Abstracts.Logic.BridgingEvent;
 import Abstracts.Logic.EncounterEvent;
+import javax.swing.JButton;
 
 /**
  *
@@ -17,44 +19,36 @@ public class EventGui extends javax.swing.JPanel {
      */
     private GuiMan man;
     private EncounterEvent encounter;
+
     public EventGui(GuiMan man) {
         this.man = man;
         initComponents();
     }
-    
-    public void setNextEncounter(EncounterEvent encounter){
+
+    public void setNextEncounter(EncounterEvent encounter) {
         this.encounter = encounter;
         man.setCurrentEncounter(encounter);
         this.eventText.setText(encounter.getDescription());
-        if (encounter.OptionOne!= null && encounter.OptionOne.condition){
-            option1Button.setText(encounter.OptionOne.optionDescription);
-            option1Button.setEnabled(true);
-        } else{
-            option1Button.setText(encounter.OptionOne.conditionRequirement);
-            option1Button.setEnabled(false);
+        buttonSetup(option1Button, encounter.OptionOne);
+        buttonSetup(option2Button, encounter.OptionTwo);
+        buttonSetup(option3Button, encounter.OptionThree);
+        buttonSetup(option4Button, encounter.OptionFour);
+
+    }
+
+    private void buttonSetup(JButton button, BridgingEvent option) {
+        if (option != null) {
+            if (option.condition) {
+                button.setText(option.optionDescription);
+                button.setEnabled(true);
+            } else {
+                button.setText(option.conditionRequirement);
+                button.setEnabled(false);
+            }
+        } else {
+            button.setText("");
+            button.setEnabled(false);
         }
-        if (encounter.OptionTwo!= null && encounter.OptionTwo.condition){
-            option2Button.setText(encounter.OptionTwo.optionDescription);
-            option2Button.setEnabled(true);
-        } else{
-            option2Button.setText(encounter.OptionTwo.conditionRequirement);
-            option2Button.setEnabled(false);
-        }
-        if (encounter.OptionThree!= null && encounter.OptionThree.condition){
-            option3Button.setText(encounter.OptionThree.optionDescription);
-            option3Button.setEnabled(true);
-        } else{
-            option3Button.setText(encounter.OptionThree.conditionRequirement);
-            option3Button.setEnabled(false);
-        }
-        if (encounter.OptionFour!= null && encounter.OptionFour.condition){
-            option4Button.setText(encounter.OptionFour.optionDescription);
-            option4Button.setEnabled(true);
-        } else{
-            option4Button.setText(encounter.OptionFour.conditionRequirement);
-            option4Button.setEnabled(false);
-        }
-        
     }
 
     /**
