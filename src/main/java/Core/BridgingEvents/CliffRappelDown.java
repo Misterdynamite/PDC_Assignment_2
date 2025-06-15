@@ -2,6 +2,8 @@ package Core.BridgingEvents;
 
 import Core.Player.Inventory;
 
+import java.util.Random;
+
 public class CliffRappelDown extends Abstracts.Logic.BridgingEvent {
 
     public CliffRappelDown(Core.Player.Player player) {
@@ -13,10 +15,12 @@ public class CliffRappelDown extends Abstracts.Logic.BridgingEvent {
 
     @Override
     public void OutCome() {
-        if (condition) {
-            return;
+        Random random = new Random();
+        if (random.nextInt(100) < 75) {
+            setDescription("You successfully rappel down the cliff using your rope.");
         } else {
-            return;
+            setDescription("You successfully rappel down the cliff using your rope, but the rope breaks.");
+            this.player.getInventory().removeItem(Inventory.Item.ROPE);
         }
     }
 }
