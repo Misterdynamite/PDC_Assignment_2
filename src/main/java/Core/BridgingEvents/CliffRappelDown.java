@@ -14,9 +14,9 @@ public class CliffRappelDown extends Abstracts.Logic.BridgingEvent {
     @Override
     public void OutCome() {
         if (condition) {
-            setDescription("You successfully climb down to safety.");
+            return;
         } else {
-            setDescription("You cannot climb down from here.");
+            return;
         }
     }
 }
