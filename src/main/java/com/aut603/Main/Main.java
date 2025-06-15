@@ -37,6 +37,7 @@ public class Main {
     public void setPlayer(int idx){
         this.journey = db.loadJourneyFromIndex(idx);
     }
+
     public void loadSaves(){
         saves = db.getAliveJourneysBrief();
     }

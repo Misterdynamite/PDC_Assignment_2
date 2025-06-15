@@ -24,6 +24,7 @@ public class LoadGame extends javax.swing.JPanel {
         initComponents();
     }
     public void loadOptions(){
+        savesList.removeAll();
         indexes = new ArrayList<>();
         saves = man.getSaves();
         for (String[][] s : saves){
