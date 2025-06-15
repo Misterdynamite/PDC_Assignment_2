@@ -76,6 +76,7 @@ public class OutCome extends javax.swing.JPanel {
             dead = true;
             EventText.setText("you are dead");
         } else if (dead){
+            man.save();
             man.gotToMainMenu();
         }else {
                     man.nextEncounter();
