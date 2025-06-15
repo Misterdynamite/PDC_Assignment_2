@@ -65,7 +65,7 @@ public class DatabaseReader extends Abstracts.Database.DatabaseReader {
             Journey journey = new Journey(player);
             journey.setJourneyId(journeyId);
             journey.setJourneyLog(journeyLog);
-            journey.setCurrentEvent(GameUtilities.loadEvent(currentEvent));
+            journey.setCurrentEvent(GameUtilities.loadEvent(currentEvent, player));
 
             return journey;
         } catch (SQLException e) {

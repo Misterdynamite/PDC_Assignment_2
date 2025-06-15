@@ -17,7 +17,7 @@ public class Database extends Abstracts.Database.Database {
 
     private static Database db;
 
-    private Database() throws SQLException {
+    protected Database() throws SQLException {
         super();
         this.url = "jdbc:derby:CYOADatabase;create=true";
         this.user = "DBAccess";

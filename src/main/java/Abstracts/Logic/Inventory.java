@@ -4,39 +4,23 @@ import java.util.ArrayList;
 
 public abstract class Inventory {
 
-    protected final ArrayList<Core.Player.Inventory.Item> inventory = new ArrayList<Core.Player.Inventory.Item>();
-    protected int INVENTORY_CAPACITY;
-
-    public boolean isItemOwned(Core.Player.Inventory.Item itemSearch) {
-        for (Core.Player.Inventory.Item item : this.inventory) {
-            if (item.equals(itemSearch)) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    public boolean addItem(Core.Player.Inventory.Item item) {
-        if (this.getInventorySize() < this.INVENTORY_CAPACITY) {
-            this.inventory.add(item);
-            return true;
-        } else {
-            return false;
-        }
-    }
-
-    public boolean removeItem(Item itemRemove) {
-        return this.inventory.remove(itemRemove);
-    }
+    protected final ArrayList<Item> inventory = new ArrayList<Item>();
+    public int INVENTORY_CAPACITY;
 
     public int getInventorySize() {
         return inventory.size();
     }
 
-    public ArrayList<Core.Player.Inventory.Item> getInventory() {
-        return this.inventory;
+    public boolean removeItem(Core.Player.Inventory.Item item) {
+        return this.inventory.remove(item);
     }
-    public void setInventory(ArrayList<Core.Player.Inventory.Item> STARTING_INVENTORY) {
+
+    public boolean addItem(Core.Player.Inventory.Item item) {
+        return this.inventory.remove(item);
+    }
+
+    public boolean isItemOwned(Core.Player.Inventory.Item itemSearch) {
+        return this.inventory.contains(itemSearch);
     }
 
     public static enum Item {}

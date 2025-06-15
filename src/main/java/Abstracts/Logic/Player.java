@@ -7,9 +7,6 @@ public abstract class Player {
     protected int money;
     protected int health;
 
-    public boolean isItemOwned(Core.Player.Inventory.Item item) {
-        return this.inventory.isItemOwned(item);
-    }
 
     public Inventory getInventory() {
         return inventory;

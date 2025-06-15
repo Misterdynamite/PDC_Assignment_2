@@ -5,6 +5,7 @@ import Abstracts.Logic.Event;
 
 public class Journey extends Abstracts.Logic.Journey {
 
+    protected Player player;
 
     private EncounterEvent currentEvent;
 
@@ -16,6 +17,11 @@ public class Journey extends Abstracts.Logic.Journey {
     public Journey(String playerName) {
         super();
         this.player = new Player(playerName);
+    }
+
+    @Override
+    public Player getPlayer() {
+        return player;
     }
 
     public EncounterEvent getCurrentEvent() {

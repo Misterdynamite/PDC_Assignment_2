@@ -2,10 +2,8 @@ package Tests;
 
 // test does clear out all the tables in the database for testing purposes due to using the same class
 
-import Abstracts.Logic.Event;
-import Core.Database.Database;
-import Core.Database.DatabaseCreation;
-import Core.Database.DatabaseDestruction;
+
+import Core.Database.*;
 import Core.Events.TestEvent;
 import Core.Player.Journey;
 import org.junit.jupiter.api.*;
@@ -22,6 +20,30 @@ class DatabaseTest {
     Database database;
     DatabaseDestruction destruction;
     DatabaseCreation creation;
+
+    static class Database extends Core.Database.Database {
+        private static Database db;
+
+        private Database() throws SQLException {
+            super();
+            this.url = "jdbc:derby:TestCYOADatabase;create=true";
+            this.user = "DBAccess";
+            this.password = "ReallyCoolAdmin42";
+            this.connection = new DatabaseConnection(url, user, password);
+            this.reader = new DatabaseReader(this);
+            this.writer = new DatabaseWriter(this);
+            this.creation = new DatabaseCreation(this);
+
+            creation.initaliseDatabase();
+        }
+
+        public static Database getInstance() throws SQLException {
+            if (db == null) {
+                db = new Database();
+            }
+            return db;
+        }
+    }
 
     @BeforeEach
     void setUp() throws SQLException {
@@ -42,7 +64,7 @@ class DatabaseTest {
             sb.append((char) ('A' + random.nextInt(26)));
         }
         journey.addToJourney(sb.toString());
-        journey.setCurrentEvent(new TestEvent());
+        journey.setCurrentEvent(new TestEvent(journey.getPlayer()));
         database.saveJourney(journey);
 
 
@@ -73,7 +95,7 @@ class DatabaseTest {
     @Test
     void saveAndLoadJourneyTest() {
         Journey journey = new Journey("TestUser");
-        journey.setCurrentEvent(new TestEvent());
+        journey.setCurrentEvent(new TestEvent(journey.getPlayer()));
         database.saveJourney(journey);
         Journey loadedJourney = database.loadJourneyFromIndex(1);
         assertNotNull(loadedJourney, "Loaded journey should not be null");
@@ -97,7 +119,7 @@ class DatabaseTest {
     @Test
     void iterativeJourneySaveTest() {
         Journey journey = new Journey("TestUser");
-        journey.setCurrentEvent(new TestEvent());
+        journey.setCurrentEvent(new TestEvent(journey.getPlayer()));
         for (int i = 1; i < 30; i++) {
             journey.getPlayer().changeMoney(i);
             database.saveJourney(journey);
