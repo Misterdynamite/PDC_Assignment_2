@@ -81,7 +81,7 @@ class PlayerTest {
     void testAddItemWithinCapacity() {
         assertTrue(inventory.addItem(Item.ROPE));
         assertTrue(inventory.addItem(Item.BOMB));
-        assertEquals(2, inventory.getInventorySize());
+        assertEquals(2, inventory.getNumberOfItems());
     }
 
     @Test
@@ -91,7 +91,7 @@ class PlayerTest {
         inventory.addItem(Item.BOW);
 
         assertFalse(inventory.addItem(Item.SWORD));
-        assertEquals(2, inventory.getInventorySize());
+        assertEquals(2, inventory.getNumberOfItems());
     }
 
     @Test
@@ -110,7 +110,7 @@ class PlayerTest {
         items.add(Item.SWORD);
 
         inventory.setInventory(items);
-        assertEquals(2, inventory.getInventorySize());
+        assertEquals(2, inventory.getNumberOfItems());
         assertTrue(player.getInventory().isItemOwned(Item.BOW));
         assertTrue(player.getInventory().isItemOwned(Item.SWORD));
     }

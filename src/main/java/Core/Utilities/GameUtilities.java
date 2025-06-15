@@ -9,7 +9,7 @@ import org.reflections.Reflections;
 import java.util.Set;
 
 public class GameUtilities {
-
+    // Loads an event by its name from the Core.Events package
     public static EncounterEvent loadEvent(String eventName, Player player) {
         try {
             Class<?> eventClass = Class.forName("Core.Events." + eventName);
@@ -18,7 +18,7 @@ public class GameUtilities {
             throw new RuntimeException("Failed to load event: " + eventName, e);
         }
     }
-
+    // Selects a random event from the available events in the Core.Events package
     public static EncounterEvent generateRandomEvent(Player player) {
         try {
             Reflections reflections = new Reflections("Core.Events");

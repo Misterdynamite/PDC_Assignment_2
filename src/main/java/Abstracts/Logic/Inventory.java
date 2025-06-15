@@ -5,9 +5,9 @@ import java.util.ArrayList;
 public abstract class Inventory {
 
     protected final ArrayList<Item> inventory = new ArrayList<Item>();
-    public int INVENTORY_CAPACITY;
+    public int INVENTORY_CAPACITY = 3;
 
-    public int getInventorySize() {
+    public int getNumberOfItems() {
         return inventory.size();
     }
 

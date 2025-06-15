@@ -33,10 +33,12 @@ public class Shop extends Abstracts.Logic.EncounterEvent {
             setDescription("You exit the shop.");
         }
     }
-    static class ShopBuy extends Abstracts.Logic.BridgingEvent {
-        private int cost;
-        private Inventory.Item item;
 
+    static class ShopBuy extends Abstracts.Logic.BridgingEvent {
+        private final int cost;
+        private final Inventory.Item item;
+
+        // Constructor for the bridging event
         public ShopBuy(Player player) {
             super(player);
             Random random = new Random();
@@ -51,21 +53,20 @@ public class Shop extends Abstracts.Logic.EncounterEvent {
             }
             if (this.player.getInventory().isItemOwned(item)) {
                 if (!first) requirement.append(", ");
-                requirement.append("you must not already own ").append(item.name());
+                requirement.append("you must not already own ").append(StringUtilities.toTitleCase(item.name()));
                 first = false;
             }
-            if (player.getInventory().getInventorySize() >= player.getInventory().INVENTORY_CAPACITY) {
+            if (player.getInventory().getNumberOfItems() >= player.getInventory().INVENTORY_CAPACITY) {
                 if (!first) requirement.append(", ");
                 requirement.append("your inventory must have space");
             }
-            if (first) {
-                requirement.append("You can buy ").append(item.name()).append(" for ").append(cost).append(" gold.");
-            }
+
+
             this.conditionRequirement = requirement.toString();
             this.optionDescription = "Buy " + StringUtilities.toTitleCase(item.name()) + " for " + cost + " gold.";
             this.condition = (this.player.getMoney() >= cost &&
                     !this.player.getInventory().isItemOwned(item) &&
-                    player.getInventory().getInventorySize() < player.getInventory().INVENTORY_CAPACITY);
+                    player.getInventory().getNumberOfItems() < player.getInventory().INVENTORY_CAPACITY);
         }
 
         @Override

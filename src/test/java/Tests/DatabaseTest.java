@@ -4,6 +4,7 @@ package Tests;
 
 
 import Core.Database.*;
+import Core.Events.RestArea;
 import Core.Player.Journey;
 import org.junit.jupiter.api.*;
 
@@ -54,6 +55,11 @@ class DatabaseTest {
 
     }
 
+    @AfterEach
+    void tearDown() {
+        destruction.truncateTables();
+    }
+
     public void createDummyJourney() {
 
         Random random = new Random();
@@ -63,16 +69,12 @@ class DatabaseTest {
             sb.append((char) ('A' + random.nextInt(26)));
         }
         journey.addToJourney(sb.toString());
-        journey.setCurrentEvent(new TestEvent(journey.getPlayer()));
+        journey.setCurrentEvent(new RestArea(journey.getPlayer()));
         database.saveJourney(journey);
 
 
     }
 
-    @AfterEach
-    void tearDown() {
-        destruction.truncateTables();
-    }
 
     @Test
     void tableCreationTest() throws SQLException {
@@ -94,7 +96,7 @@ class DatabaseTest {
     @Test
     void saveAndLoadJourneyTest() {
         Journey journey = new Journey("TestUser");
-        journey.setCurrentEvent(new TestEvent(journey.getPlayer()));
+        journey.setCurrentEvent(new RestArea(journey.getPlayer()));
         database.saveJourney(journey);
         Journey loadedJourney = database.loadJourneyFromIndex(1);
         assertNotNull(loadedJourney, "Loaded journey should not be null");
@@ -118,7 +120,7 @@ class DatabaseTest {
     @Test
     void iterativeJourneySaveTest() {
         Journey journey = new Journey("TestUser");
-        journey.setCurrentEvent(new TestEvent(journey.getPlayer()));
+        journey.setCurrentEvent(new RestArea(journey.getPlayer()));
         for (int i = 1; i < 30; i++) {
             journey.getPlayer().changeMoney(i);
             database.saveJourney(journey);
